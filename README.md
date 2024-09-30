@@ -1,0 +1,2 @@
+# SmartControl
+SmartControl Plugin
