@@ -1,0 +1,130 @@
+{
+    "$schema": "https://raw.githubusercontent.com/rdkcentral/rdkservices/main/Tools/json_generator/schemas/interface.schema.json",
+    "jsonrpc": "2.0",
+    "info": {
+        "title": "SmartControl API",
+        "class": "SmartControl",
+        "description": "The `SmartControl` plugin will manage & control volume for STB & Smart TVs"
+    },
+    "common": {
+        "$ref": "../common/common.json"
+    },
+    "definitions": {
+        "audioPort0": {
+            "summary": "Audio port name.",
+            "type": "string",
+            "example": "HDMI0"
+        },
+        "audioPort1": {
+            "summary": "Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified.",
+            "default": "HDMI0",
+            "type": "string",
+            "example": "SPEAKER0"
+        },
+        "level": {
+            "summary": "Value between 0 and 10, where 0 means no level and 10 means maximum level.",
+            "type": "integer",
+            "example": 9
+        },
+        "muted": {
+            "summary": "Mute or unmute audio.",
+            "type": "boolean",
+            "example": true
+        },
+        "portName": {
+            "summary": "Video port name.",
+            "type": "string",
+            "example": "HDMI0"
+        },
+        "volumeLevel": {
+            "summary": "Value between 0 and 100, where 0 means no level and 100 means maximum level.",
+            "type": "number",
+            "example": 50
+        }
+    },
+    "methods": {
+        "getVolumeThresholdLevel": {
+            "summary": "Returns the current volume level.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "audioPort": {
+                        "$ref": "#/definitions/audioPort1"
+                    }
+                }
+            },
+            "result": {
+                "type": "object",
+                "properties": {
+                    "volumeLevel": {
+                        "$ref": "#/definitions/volumeLevel"
+                    },
+                    "success": {
+                        "$ref": "#/common/success"
+                    }
+                },
+                "required": [
+                    "volumeLevel",
+                    "success"
+                ]
+            }
+        },
+        "setVolumeThresholdLevel": {
+            "summary": "Adjusts the volume level on a specific port.",
+            "events": {
+                "volumeLevelChanged": "Triggered when the volume level changes."
+            },
+            "params": {
+                "type": "object",
+                "properties": {
+                    "audioPort": {
+                        "$ref": "#/definitions/audioPort1"
+                    },
+                    "volumeLevel": {
+                        "$ref": "#/definitions/volumeLevel"
+                    }
+                },
+                "required": [
+                    "volumeLevel"
+                ]
+            },
+            "result": {
+                "$ref": "#/common/result"
+            }
+        }
+    },
+    "events": {
+        "muteStatusChanged": {
+            "summary": "Triggered when the mute status changes.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "muted": {
+                        "summary": "Mute status value.",
+                        "type": "boolean",
+                        "example": true
+                    }
+                },
+                "required": [
+                    "muted"
+                ]
+            }
+        },
+        "volumeLevelChanged": {
+            "summary": "Triggered when the volume level changes.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "volumeLevel": {
+                        "summary": "Volume level.",
+                        "type": "integer",
+                        "example": 10
+                    }
+                },
+                "required": [
+                    "volumeLevel"
+                ]
+            }
+        }
+    }
+}

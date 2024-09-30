@@ -1,0 +1,13 @@
+{
+    "$schema": "https://raw.githubusercontent.com/rdkcentral/rdkservices/main/Tools/json_generator/schemas/plugin.schema.json",
+    "info": {
+      "title": "SmartControl Plugin",
+      "callsign": "org.rdk.SmartControl",
+      "locator": "libWPEFrameworkSmartControl.so",
+      "status": "production",
+      "description": "The `SmartControl` plugin will manage & Control volume for STB & smart Tv's"
+    },
+    "interface": {
+      "$ref": "SmartControl.json#"
+    }
+}

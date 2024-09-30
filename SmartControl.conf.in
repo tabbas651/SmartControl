@@ -1,0 +1,4 @@
+precondition = ["Platform"]
+callsign = "org.rdk.SmartControl"
+autostart = "false"
+startuporder = "@PLUGIN_SMARTCONTROL_STARTUPORDER@"
